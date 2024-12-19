@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35410.144
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT-Implementation", "BT-Implementation\BT-Implementation.csproj", "{495B9BB8-8537-4E18-A220-55527F33C10E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BT-Test", "BT-Test\BT-Test.csproj", "{ED085E52-989D-4D92-8F73-CD7DACB5B1A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{495B9BB8-8537-4E18-A220-55527F33C10E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{495B9BB8-8537-4E18-A220-55527F33C10E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{495B9BB8-8537-4E18-A220-55527F33C10E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{495B9BB8-8537-4E18-A220-55527F33C10E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED085E52-989D-4D92-8F73-CD7DACB5B1A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED085E52-989D-4D92-8F73-CD7DACB5B1A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED085E52-989D-4D92-8F73-CD7DACB5B1A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED085E52-989D-4D92-8F73-CD7DACB5B1A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

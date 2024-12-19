@@ -1,0 +1,8 @@
+# Ignore bin and obj folders 
+**/bin/ 
+**/obj/ 
+# Optional: Ignore other common build artifacts 
+*.dll 
+*.exe 
+*.log 
+*.tmp
