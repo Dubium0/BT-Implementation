@@ -1,6 +1,7 @@
 ﻿using BT_Implementation;
 using BT_Implementation.Control;
 using BT_Implementation.Leaf;
+using BT_Implementation.Decorator;
 using System;
 using UnityEngine;
 
@@ -14,13 +15,14 @@ public class AlienAIFacade : BTRoot
     public override void ConstructBT()
     {
 
-        SequenceNode sequenceAttack = new SequenceNode("Alien Attack Sequence");
-
-        //////////////LEFT BRANCH//////////////////////
         
 
-        SelectorNode selectorAttackOrGetCloser = new SelectorNode("Alien Attack Or Get Closer Selector");
-        ///// LEFT BRANCH /////////
+
+
+
+
+        SequenceNode attackSequence = new SequenceNode("Attack Sequence");
+
         ConditionNode inShootRange = new ConditionNode("Is Player In Range", blackBoard,blackBoard =>
         {
             Debug.Log("inShootRange to player");
@@ -40,24 +42,23 @@ public class AlienAIFacade : BTRoot
 
 
         });
+        attackSequence.AddChild(inShootRange);
+        attackSequence.AddChild(new ShootThePlayer("Shoot The Player", blackBoard));
 
-        selectorAttackOrGetCloser.AddChild(inShootRange);
-            /////// RIGHT BRANCH /////////
-            ///
-        SequenceNode sequenceMove = new SequenceNode("Alien Move Sequence");
-
-        //////////////LEFT BRANCH//////////////////////
-        ///
-        SelectorNode selectorHowToMove = new SelectorNode("Alien How To Move Selector");
-        //////////////LEFT BRANCH//////////////////////
+        SequenceNode runSequence = new SequenceNode("Run Sequence");
         ConditionNode playerShooting = new ConditionNode("Is Player Shooting", blackBoard, blackBoard =>
         {
-            Debug.Log("playerShooting to player");
+           
             if (SingletonPlayer.Instance == null)
             {
                 return false;
             }
             var player = SingletonPlayer.Instance;
+
+            if(player.IsShooting == false)
+            {
+                return false;
+            }
 
             var alien  = blackBoard.GetValue<Alien>("Alien");
 
@@ -70,26 +71,23 @@ public class AlienAIFacade : BTRoot
                   inverseDistanceVector.x * Mathf.Sin(-30) + inverseDistanceVector.y * Mathf.Cos(-30));
             // Calculate dot products
             float dotVA = Vector3.Dot(player.PrevShootDirection, leftBorder); 
-            float dotVB = Vector3.Dot(player.PrevShootDirection, rightBorder); 
+            float dotVB = Vector3.Dot(player.PrevShootDirection, rightBorder);
             // Check if the vector is within the angle
+            Debug.Log("playerShooting to player" + $"{dotVA > 0 && dotVB > 0}");
             return dotVA > 0 && dotVB > 0;
 
         });
-        selectorHowToMove.AddChild(playerShooting);
-        //////////////RIGHT BRANCH//////////////////////
-        selectorHowToMove.AddChild(new RunToPlayer("Alien Move To Player", blackBoard));
-        sequenceMove.AddChild(selectorHowToMove);
-        /////////////RIGHT BRANCH//////////////////////
-        sequenceMove.AddChild(new ZigZagRunToPlayer("Alien Shoot Player", blackBoard));
-        /////////////RIGHT BRANCH//////////////////////
-        selectorAttackOrGetCloser.AddChild(sequenceMove);
-        /////LEFT RANCH/////////
-        sequenceAttack.AddChild(selectorAttackOrGetCloser);
-        //////////////RIGHT BRANCH//////////////////////
-        sequenceAttack.AddChild(new ShootThePlayer("Alien Shoot Player", blackBoard));
+        runSequence.AddChild(playerShooting);
+        runSequence.AddChild(new ZigZagRunToPlayer("ZigZag Run To Player", blackBoard));
+
+        SelectorNode alienAiSelector = new SelectorNode("Alien AI Selector");
+
+        alienAiSelector.AddChild(attackSequence);
+        alienAiSelector.AddChild(runSequence);
+        alienAiSelector.AddChild(new RunToPlayer("Run To Player", blackBoard));
 
 
-        entryPoint = sequenceAttack;
+        entryPoint = alienAiSelector;
 
     }
 

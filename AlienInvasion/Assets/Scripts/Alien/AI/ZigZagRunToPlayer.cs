@@ -2,6 +2,7 @@
 using BT_Implementation.Leaf;
 using System;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class ZigZagRunToPlayer : ActionNode
 {
@@ -23,16 +24,21 @@ public class ZigZagRunToPlayer : ActionNode
         var alien = blackBoard.GetValue<Alien>("Alien");
         var zigZagSwitch = blackBoard.GetValue<int>("ZigZagSwitch");
 
-        var directionVector = (currentPlayerPosition - alien.transform.position).normalized;
+        var distanceVector = (currentPlayerPosition - alien.transform.position);
+      
+        var directionVector = new Vector2(distanceVector.normalized.x, distanceVector.normalized.y);
 
-        var zigzagVector = new Vector2(
-       directionVector.x * Mathf.Cos(30 ) - directionVector.y * Mathf.Sin(30),
-       directionVector.x * Mathf.Sin(30) + directionVector.y * Mathf.Cos(30)
-            );
-        Debug.Log("Zigzag to player");
-        zigzagVector.x *= zigZagSwitch;
-        zigZagSwitch = -zigZagSwitch;
-        alien.MoveAmount(zigzagVector * alien.Speed * Time.deltaTime);
+
+        // Calculate perpendicular direction for zig-zag motion
+        Vector2 perpendicularDirection = new Vector2(-directionVector.y, directionVector.x);
+
+        // Calculate zig-zag offset using a sine wave
+        float zigZagOffset = Mathf.Sin(Time.time * 5) * 8;
+
+        // Combine forward movement with zig-zag offset
+        Vector2 movement = directionVector * 2 * Time.deltaTime + perpendicularDirection * zigZagOffset * Time.deltaTime;
+
+        alien.MoveAmount((Vector3)movement);
 
         return BTResult.Success;
     }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 644378019379826966}
   - component: {fileID: 6307784531693254342}
   - component: {fileID: 677624247333108594}
+  - component: {fileID: 5196988098218914724}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 700834611505576013, guid: 7cf2a99bebf5fd04e97b96598829f389, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -128,7 +129,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.25, y: 3.25}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -175,8 +176,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f386bd46d84a14ea5f57f50b44e95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed_: 5
-  bulletPrefab: {fileID: 0}
+  speed_: 8
+  bulletPrefab: {fileID: 3801205139395615406, guid: b93191399e2c203439d7ec5acf0d607b, type: 3}
   shootDelay: 0.5
-  shootRadius: 5
+  shootRadius: 15
   health: 100
+  onPlayerHit: {fileID: 11400000, guid: a5431cb5f7f6fde4880dc7aa14caf3fd, type: 2}
+  onPlayerDeath: {fileID: 11400000, guid: e0253a91639f7c64f9de73f7616733eb, type: 2}
+--- !u!114 &5196988098218914724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3200266996740938816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb52e532248cfc4c919ec1451df0d2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 3de262d1655f8ed4e8bc0af23cb9511a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 677624247333108594}
+        m_TargetAssemblyTypeName: SingletonPlayer, Assembly-CSharp
+        m_MethodName: UnlockControls
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

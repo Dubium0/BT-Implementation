@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -5746810173728730559, guid: 7cf2a99bebf5fd04e97b96598829f389, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,10 +102,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5327e7f72215004391289fef1721099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 4
   shootRadius: 5
   shootDelay: 0.5
   bulletPrefab: {fileID: 3801205139395615406, guid: be1970b61e4e7144a8c81e60de68a022, type: 3}
+  health: 50
+  onAlienDeath: {fileID: 11400000, guid: 6b6b2e66dc5a20e42a0a1f1f8bd43c7e, type: 2}
 --- !u!50 &5577750187541415408
 Rigidbody2D:
   serializedVersion: 5

@@ -20,9 +20,11 @@ public class RunToPlayer : ActionNode
 
         var alien = blackBoard.GetValue<Alien>("Alien");
 
-        var directionVector = (currentPlayerPosition - alien.transform.position).normalized;
+        var distanceVector = (currentPlayerPosition - alien.transform.position);
 
-        alien.MoveAmount(directionVector * alien.Speed * Time.deltaTime);
+      
+
+        alien.MoveAmount(distanceVector.normalized * alien.Speed * Time.deltaTime);
 
         return BTResult.Success;
 
