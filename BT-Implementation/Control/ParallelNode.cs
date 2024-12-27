@@ -12,7 +12,7 @@ namespace BT_Implementation.Control
         private int successTreshold;
         private int successCount = 0;
         private int failureCount = 0;
-        private Stack<BTNode> executionStack = new ();
+        private Stack<BTNode> executionStack = new Stack<BTNode>();
         public ParallelNode(string name,int successTreshold):base(name) { this.successTreshold = successTreshold; }
         public override BTResult Execute()
         {

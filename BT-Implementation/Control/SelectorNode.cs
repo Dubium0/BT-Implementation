@@ -8,7 +8,7 @@ namespace BT_Implementation.Control
 {
     public class SelectorNode : ControlNode
     {
-        private Stack<BTNode> executionStack = new();
+        private Stack<BTNode> executionStack = new Stack<BTNode>();
 
         public SelectorNode(string name) : base(name)
         {

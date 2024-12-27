@@ -6,6 +6,7 @@ namespace BT_Implementation.Decorator
     {
         private int numberOfRetry;
         private int numberOfExecuted= 0 ;
+        //if numberofretry is -1 then it will retry infinite times
         public RetryNode(string name,BTNode child,int numberOfRetry) : base(name,child)
         {
             this.numberOfRetry = numberOfRetry;
@@ -13,7 +14,7 @@ namespace BT_Implementation.Decorator
 
         public override BTResult Execute()
         {
-
+            
             while (numberOfExecuted < numberOfRetry) 
             {
                 var result = child.Execute();
@@ -25,7 +26,7 @@ namespace BT_Implementation.Decorator
                         return BTResult.Success;
                        
                     case BTResult.Failure:
-                        numberOfExecuted++;
+                        if (numberOfRetry != -1)numberOfExecuted++;
                         break;
                     case BTResult.Running:
                         return BTResult.Running;

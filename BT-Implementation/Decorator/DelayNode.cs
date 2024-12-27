@@ -1,4 +1,5 @@
-﻿namespace BT_Implementation.Decorator
+﻿
+namespace BT_Implementation.Decorator
 {
    
     public class DelayNode : DecoratorNode

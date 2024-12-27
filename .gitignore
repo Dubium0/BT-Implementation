@@ -6,3 +6,5 @@
 *.exe 
 *.log 
 *.tmp
+
+.vs/

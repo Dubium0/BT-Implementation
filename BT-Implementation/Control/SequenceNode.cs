@@ -1,9 +1,9 @@
-﻿
+﻿using System.Collections.Generic;
 namespace BT_Implementation.Control
 {
     public class SequenceNode : ControlNode
     {
-        private Stack<BTNode> executionStack = new();
+        private Stack<BTNode> executionStack = new Stack<BTNode>();
 
         public SequenceNode(string name) : base(name)
         {
@@ -11,7 +11,7 @@ namespace BT_Implementation.Control
 
         public override BTResult Execute()
         {
-            if (executionStack.Count == 0) 
+            if (executionStack.Count == 0)
             {
                 Reset();
             }
@@ -19,11 +19,11 @@ namespace BT_Implementation.Control
             while (executionStack.Count > 0)
             {
                 var child = executionStack.Pop();
-               
+
                 //Console.WriteLine($"Ticking {child.Name} ");
                 var result = child.Execute();
 
-                 
+
                 switch (result)
                 {
                     case BTResult.Success:
@@ -44,7 +44,7 @@ namespace BT_Implementation.Control
 
                 }
             }
-            
+
             return BTResult.Success;
 
 
@@ -57,7 +57,8 @@ namespace BT_Implementation.Control
             executionStack.Clear();
 
 
-            for (int i = children.Count - 1; i >= 0; i--) {
+            for (int i = children.Count - 1; i >= 0; i--)
+            {
                 executionStack.Push(children[i]);
             }
 

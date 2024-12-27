@@ -9,7 +9,7 @@ namespace BT_Implementation.Control
     //one to many
     public abstract class ControlNode : BTNode
     {
-        protected List<BTNode> children = new();
+        protected List<BTNode> children = new List<BTNode>();
 
         protected ControlNode(string name) : base(name)
         {

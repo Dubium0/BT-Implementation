@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.Collections.Generic;
+using System;
 namespace BT_Implementation
 {
     public class Blackboard
     {
-        public Dictionary<string, object> Data { get; set; }
+        public Dictionary<string, System.Object> Data;
 
         public Blackboard()
         {
-            Data = new Dictionary<string, object>();
+            Data = new Dictionary<string, System.Object>();
         }
 
         public T GetValue<T>(string key)
