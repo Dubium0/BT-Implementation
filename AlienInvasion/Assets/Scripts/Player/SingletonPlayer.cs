@@ -144,7 +144,7 @@ public class SingletonPlayer : MonoBehaviour
             onPlayerHit.Raise();
             if (health <= 0)
             {
-                GetComponent<Collider>().enabled = false;
+             
                 onPlayerDeath.Raise();
                 Destroy(gameObject);
             }
